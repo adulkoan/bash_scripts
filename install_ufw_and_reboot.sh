@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # Requirement: Your challenge is to write a piece of automation to run against a remote Ubuntu server.  
 #              This should patch the server, install and enable UFW. Finally reboot the server and 
@@ -17,7 +17,7 @@
 #               when waiting for the server to restart.
 
 # Variables which can be overridden if desired
-TARGET_HOST=ec2-52-210-90-224.eu-west-1.compute.amazonaws.com
+TARGET_HOST=ec2-52-51-107-101.eu-west-1.compute.amazonaws.com
 SSH_USER=ubuntu
 APT=/usr/bin/apt-get
 SSH=/bin/ssh
@@ -69,7 +69,7 @@ ${SSH} ${SSH_USER}@${TARGET_HOST} "sudo ufw allow ssh"
 if [[ -z $(${SSH} ${SSH_USER}@${TARGET_HOST} "sudo ufw status" 2>/dev/null | grep status | grep -v inactive) ]]
 then
 	echo "Enabling UFW on server ${TARGET_HOST}."
-	${SSH} ${SSH_USER}@${TARGET_HOST} "sudo ufw allow ssh"
+	${SSH} ${SSH_USER}@${TARGET_HOST} "echo y | sudo ufw enable"
 else
 	echo "UFW already enabled onserver ${TARGET_HOST}."
 fi
