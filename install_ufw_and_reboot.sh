@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash 
 
 # Requirement: Your challenge is to write a piece of automation to run against a remote Ubuntu server.  
 #              This should patch the server, install and enable UFW. Finally reboot the server and 
